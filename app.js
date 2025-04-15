@@ -26,7 +26,7 @@ if (!fs.existsSync(uploadFolder)) {
 // Multer storage config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, uploadFolder);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -72,6 +72,10 @@ app.get("/", (req, res) => {
 });
 
 const HOST = "0.0.0.0";
-app.listen(PORT, HOST, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+app.listen(PORT, HOST, (err) => {
+  if (err) {
+    console.error("Failed to start server:", err);
+    process.exit(1);
+  }
+  console.log(`🚀 Server running at http://${HOST}:${PORT}`);
 });
