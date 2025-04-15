@@ -12,7 +12,7 @@ const fileExistsService = new FileExistsService();
 app.use(express.urlencoded({ extended: true }));
 
 const uploadPathMap = {
-  linux: "/storage/emulated/0/DCIM/Uploads",
+  android: "/storage/emulated/0/DCIM/Uploads",
   darwin: path.join(__dirname, "uploads"),
 };
 
